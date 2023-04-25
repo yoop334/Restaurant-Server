@@ -1,0 +1,17 @@
+C:\Cati\RestaurantServer\Repository\bin\Debug\net6.0\Repository.deps.json
+C:\Cati\RestaurantServer\Repository\bin\Debug\net6.0\Repository.runtimeconfig.json
+C:\Cati\RestaurantServer\Repository\bin\Debug\net6.0\Repository.dll
+C:\Cati\RestaurantServer\Repository\bin\Debug\net6.0\Repository.pdb
+C:\Cati\RestaurantServer\Repository\bin\Debug\net6.0\Model.dll
+C:\Cati\RestaurantServer\Repository\bin\Debug\net6.0\Model.pdb
+C:\Cati\RestaurantServer\Repository\obj\Debug\net6.0\Repository.csproj.AssemblyReference.cache
+C:\Cati\RestaurantServer\Repository\obj\Debug\net6.0\Repository.GeneratedMSBuildEditorConfig.editorconfig
+C:\Cati\RestaurantServer\Repository\obj\Debug\net6.0\Repository.AssemblyInfoInputs.cache
+C:\Cati\RestaurantServer\Repository\obj\Debug\net6.0\Repository.AssemblyInfo.cs
+C:\Cati\RestaurantServer\Repository\obj\Debug\net6.0\Repository.csproj.CoreCompileInputs.cache
+C:\Cati\RestaurantServer\Repository\obj\Debug\net6.0\Repository.csproj.CopyComplete
+C:\Cati\RestaurantServer\Repository\obj\Debug\net6.0\Repository.dll
+C:\Cati\RestaurantServer\Repository\obj\Debug\net6.0\refint\Repository.dll
+C:\Cati\RestaurantServer\Repository\obj\Debug\net6.0\Repository.pdb
+C:\Cati\RestaurantServer\Repository\obj\Debug\net6.0\Repository.genruntimeconfig.cache
+C:\Cati\RestaurantServer\Repository\obj\Debug\net6.0\ref\Repository.dll

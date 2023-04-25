@@ -1,0 +1,17 @@
+C:\Cati\RestaurantServer\Business\bin\Debug\net6.0\Business.deps.json
+C:\Cati\RestaurantServer\Business\bin\Debug\net6.0\Business.dll
+C:\Cati\RestaurantServer\Business\bin\Debug\net6.0\Business.pdb
+C:\Cati\RestaurantServer\Business\bin\Debug\net6.0\Model.dll
+C:\Cati\RestaurantServer\Business\bin\Debug\net6.0\Repository.dll
+C:\Cati\RestaurantServer\Business\bin\Debug\net6.0\Model.pdb
+C:\Cati\RestaurantServer\Business\bin\Debug\net6.0\Repository.pdb
+C:\Cati\RestaurantServer\Business\obj\Debug\net6.0\Business.csproj.AssemblyReference.cache
+C:\Cati\RestaurantServer\Business\obj\Debug\net6.0\Business.GeneratedMSBuildEditorConfig.editorconfig
+C:\Cati\RestaurantServer\Business\obj\Debug\net6.0\Business.AssemblyInfoInputs.cache
+C:\Cati\RestaurantServer\Business\obj\Debug\net6.0\Business.AssemblyInfo.cs
+C:\Cati\RestaurantServer\Business\obj\Debug\net6.0\Business.csproj.CoreCompileInputs.cache
+C:\Cati\RestaurantServer\Business\obj\Debug\net6.0\Business.csproj.CopyComplete
+C:\Cati\RestaurantServer\Business\obj\Debug\net6.0\Business.dll
+C:\Cati\RestaurantServer\Business\obj\Debug\net6.0\refint\Business.dll
+C:\Cati\RestaurantServer\Business\obj\Debug\net6.0\Business.pdb
+C:\Cati\RestaurantServer\Business\obj\Debug\net6.0\ref\Business.dll
