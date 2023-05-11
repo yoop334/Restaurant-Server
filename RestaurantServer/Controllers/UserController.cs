@@ -18,11 +18,15 @@ public class UserController : ControllerBase
     }
 
     [HttpGet]
-    [Route("{id:int}")]
+    [Route("")]
     [AuthorizationFilter]
-    public async Task<IActionResult> GetByIdAsync([FromRoute] int id)
+    public async Task<IActionResult> GetByIdAsync()
     {
-        var user = await _userService.GetByIdAsync(id);
+        var userId = HttpContext.Items["UserId"];
+        if (userId == null)
+            return Unauthorized();
+        
+        var user = await _userService.GetByIdAsync((int)userId);
         if (user == null)
             return NotFound();
 
@@ -39,5 +43,26 @@ public class UserController : ControllerBase
         if (addedUser == null) return BadRequest("Username already exists!");
 
         return Ok(addedUser.ToViewModel());
+    }
+
+    [HttpPut]
+    [Route("")]
+    [AuthorizationFilter]
+    public async Task<IActionResult> Update([FromBody] UserUpdateViewModel userUpdateViewModel)
+    {
+        var userId = HttpContext.Items["UserId"];
+        if (userId == null)
+        {
+            return Unauthorized();
+        }
+
+        var result = await _userService.UpdateAsync(userUpdateViewModel, (int)userId);
+
+        if (result == false)
+        {
+            return NotFound(false);
+        }
+
+        return Ok(true);
     }
 }

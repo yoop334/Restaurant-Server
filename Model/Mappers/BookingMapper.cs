@@ -20,6 +20,7 @@ public static class BookingMapper
     {
         var bookingViewModel = new BookingViewModel
         {
+            Id = booking.BookingId,
             Time = new DateTimeOffset(booking.Time).ToUniversalTime().ToUnixTimeMilliseconds(),
             NrOfPersons = booking.NrOfPersons
         };

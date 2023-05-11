@@ -66,4 +66,25 @@ public class BookingController : ControllerBase
         var bookings = res.Result.Select(booking => booking.ToViewModel());
         return Ok(bookings);
     }
+
+    [HttpDelete]
+    [Route("{id:long}")]
+    [AuthorizationFilter]
+    public IActionResult DeleteBookingForUser([FromRoute] long id)
+    {
+        var userId = HttpContext.Items["UserId"];
+        if (userId == null)
+        {
+            return Unauthorized();
+        }
+
+        var result = _bookingService.DeleteBooking(id);
+
+        if (result.Result == false)
+        {
+            return NotFound();
+        }
+        
+        return Ok(result.Result);
+    }
 }

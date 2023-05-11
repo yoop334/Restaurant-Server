@@ -49,6 +49,20 @@ public class BookingService : IBookingService
         return null;
     }
 
+    public async Task<bool> DeleteBooking(long bookingId)
+    {
+        var existingBooking = await _context.Bookings.FirstOrDefaultAsync(booking => booking.BookingId == bookingId);
+        if (existingBooking == null)
+        {
+            return false;
+        }
+
+        _context.Bookings.Remove(existingBooking);
+        await _context.SaveChangesAsync();
+
+        return true;
+    }
+
     public List<int> GetAvailableNrOfPersons(long date)
     {
         var nrOfPersons = new List<int>();

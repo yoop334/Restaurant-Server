@@ -1,6 +1,7 @@
 ﻿using Business.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Model.Entities;
+using Model.ViewModels.User;
 using Repository;
 
 namespace Business.Implementations;
@@ -29,5 +30,16 @@ public class UserService : IUserService
         await _context.Users.AddAsync(user);
         await _context.SaveChangesAsync();
         return user;
+    }
+
+    public async Task<bool> UpdateAsync(UserUpdateViewModel user, int id)
+    {
+        var existingUser = await _context.Users.FirstOrDefaultAsync(u => u.UserId == id);
+        if (existingUser == null) return false;
+        
+        _context.Entry(existingUser).CurrentValues.SetValues(user);
+
+        await _context.SaveChangesAsync();
+        return true;
     }
 }

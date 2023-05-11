@@ -11,7 +11,7 @@ public static class UserMapper
         {
             Id = user.UserId,
             Username = user.Username,
-            Password = user.Password,
+            Phone = user.Phone,
             FirstName = user.FirstName,
             LastName = user.LastName
         };
@@ -24,9 +24,7 @@ public static class UserMapper
         var user = new User
         {
             Username = userCreationViewModel.Username,
-            Password = userCreationViewModel.Password,
-            FirstName = userCreationViewModel.FirstName,
-            LastName = userCreationViewModel.LastName
+            Password = userCreationViewModel.Password
         };
 
         return user;

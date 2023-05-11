@@ -1,13 +1,9 @@
 ﻿namespace Model.ViewModels.User;
 
-public class UserViewModel
+public class UserUpdateViewModel
 {
-    public long Id { get; set; }
-
-    public string Username { get; set; }
-    
     public string FirstName { get; set; }
-
+    
     public string LastName { get; set; }
     
     public string Phone { get; set; }

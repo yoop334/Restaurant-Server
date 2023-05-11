@@ -9,4 +9,5 @@ public interface IBookingService
     List<int> GetAvailableNrOfPersons(long date);
     List<int> GetAvailableHours(long date, int nrOfPersons);
     Task<List<Booking>?> GetBookingsForUser(int userId);
+    Task<bool> DeleteBooking(long bookingId);
 }
