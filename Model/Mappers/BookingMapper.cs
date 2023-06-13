@@ -1,4 +1,5 @@
 ﻿using Model.Entities;
+using Model.ViewModels;
 using Model.ViewModels.Booking;
 
 namespace Model.Mappers;
@@ -26,5 +27,19 @@ public static class BookingMapper
         };
 
         return bookingViewModel;
+    }
+    
+    public static BookingUserViewModel ToBookingUserViewModel(this Booking booking)
+    {
+        var bookingUserViewModel = new BookingUserViewModel
+        {
+            Time = new DateTimeOffset(booking.Time).ToUniversalTime().ToUnixTimeMilliseconds(),
+            NrOfPersons = booking.NrOfPersons,
+            FirstName = booking.User.FirstName,
+            LastName = booking.User.LastName,
+            Phone = booking.User.Phone
+        };
+
+        return bookingUserViewModel;
     }
 }

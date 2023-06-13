@@ -56,7 +56,8 @@ public class AccountService : IAccountService
         var refreshTokenResponse = new RefreshTokenResponse
         {
             AccessToken = _authorizationHelper.GenerateAccessToken(user),
-            RefreshToken = _authorizationHelper.GenerateRefreshToken()
+            RefreshToken = _authorizationHelper.GenerateRefreshToken(),
+            Role = user.Role
         };
 
         user.RefreshToken = refreshTokenResponse.RefreshToken;

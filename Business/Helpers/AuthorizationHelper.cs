@@ -114,4 +114,12 @@ public class AuthorizationHelper : IAuthorizationHelper
         var jwtToken = (JwtSecurityToken)tokenHandler.ReadToken(token);
         return int.Parse(jwtToken.Subject);
     }
+    
+    public async Task<bool> IsUsersRoleAuthorized(string token, string allowedRoles)
+    {
+        var userId = ExtractUserIdFromToken(token);
+        var user = await _userService.GetByIdAsync(userId);
+
+        return allowedRoles.Split(",").Any(role => role.Equals(user.Role.ToString()));
+    }
 }

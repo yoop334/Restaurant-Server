@@ -1,5 +1,5 @@
 ﻿using Model.Entities;
-using Model.ViewModels.Booking;
+using Model.ViewModels;
 
 namespace Business.Interfaces;
 
@@ -10,4 +10,5 @@ public interface IBookingService
     List<int> GetAvailableHours(long date, int nrOfPersons);
     Task<List<Booking>?> GetBookingsForUser(int userId);
     Task<bool> DeleteBooking(long bookingId);
+    IAsyncEnumerable<BookingUserViewModel> GetAllBookingsByDate(long date);
 }

@@ -1,6 +1,8 @@
 ﻿using Business.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Model.Entities;
+using Model.Mappers;
+using Model.ViewModels;
 using Repository;
 
 namespace Business.Implementations;
@@ -61,6 +63,18 @@ public class BookingService : IBookingService
         await _context.SaveChangesAsync();
 
         return true;
+    }
+
+    public IAsyncEnumerable<BookingUserViewModel> GetAllBookingsByDate(long date)
+    {
+        var selectedDate = DateTimeOffset.FromUnixTimeMilliseconds(date).LocalDateTime;
+
+        var bookingsForDate = _context.Bookings
+            .Include(booking => booking.User)
+            .Where(booking => booking.Time.Date == selectedDate.Date)
+            .Select(booking => booking.ToBookingUserViewModel()).AsAsyncEnumerable();
+
+        return bookingsForDate;
     }
 
     public List<int> GetAvailableNrOfPersons(long date)

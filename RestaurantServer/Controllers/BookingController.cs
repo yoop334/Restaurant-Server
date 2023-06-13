@@ -19,7 +19,7 @@ public class BookingController : ControllerBase
 
     [HttpGet]
     [Route("{date:long}")]
-    [AuthorizationFilter]
+    [AuthorizationFilter(roles: "Client")]
     public IActionResult GetAvailableTables([FromRoute] long date)
     {
         return Ok(_bookingService.GetAvailableNrOfPersons(date));
@@ -27,7 +27,7 @@ public class BookingController : ControllerBase
 
     [HttpGet]
     [Route("{date:long}/{nrOfPersons:int}")]
-    [AuthorizationFilter]
+    [AuthorizationFilter(roles: "Client")]
     public IActionResult GetAvailableHours([FromRoute] long date, [FromRoute] int nrOfPersons)
     {
         return Ok(_bookingService.GetAvailableHours(date, nrOfPersons));
@@ -35,7 +35,7 @@ public class BookingController : ControllerBase
     
     [HttpPost]
     [Route("")]
-    [AuthorizationFilter]
+    [AuthorizationFilter(roles: "Client")]
     public IActionResult AddBooking([FromBody] BookingCreationViewModel bookingCreationViewModel)
     {
         var userId = HttpContext.Items["UserId"];
@@ -49,7 +49,7 @@ public class BookingController : ControllerBase
     
     [HttpGet]
     [Route("")]
-    [AuthorizationFilter]
+    [AuthorizationFilter(roles: "Client")]
     public IActionResult GetBookingsForUser()
     {
         var userId = HttpContext.Items["UserId"];
@@ -63,13 +63,14 @@ public class BookingController : ControllerBase
         {
             return Ok("Error");
         }
-        var bookings = res.Result.Select(booking => booking.ToViewModel());
+        var bookings = res.Result.Select(booking => booking.ToViewModel())
+            .OrderBy(booking => booking.Time);
         return Ok(bookings);
     }
 
     [HttpDelete]
     [Route("{id:long}")]
-    [AuthorizationFilter]
+    [AuthorizationFilter(roles: "Client")]
     public IActionResult DeleteBookingForUser([FromRoute] long id)
     {
         var userId = HttpContext.Items["UserId"];
@@ -86,5 +87,43 @@ public class BookingController : ControllerBase
         }
         
         return Ok(result.Result);
+    }
+    
+    [HttpGet]
+    [Route("all/{date:long}")]
+    [AuthorizationFilter(roles: "Admin")]
+    public IActionResult GetAllBookingsByDate([FromRoute] long date)
+    {
+        var res = _bookingService.GetAllBookingsByDate(date);
+        return Ok(res);
+    }
+
+    [HttpGet]
+    [Route("first")]
+    [AuthorizationFilter(roles: "Client")]
+    public IActionResult GetFirstBookingForUser()
+    {
+        var userId = HttpContext.Items["UserId"];
+        if (userId == null)
+        {
+            return Unauthorized();
+        }
+
+        var result = _bookingService.GetBookingsForUser((int)userId);
+
+        if (result.Result == null)
+        {
+            return NotFound();
+        }
+
+        var booking = result.Result.Select(booking => booking.ToViewModel())
+            .Where(booking => booking.Time > DateTimeOffset.UtcNow.ToUnixTimeMilliseconds())
+            .MinBy(booking => booking.Time);
+        
+        if (booking == default)
+        {
+            return NotFound();
+        }
+        return Ok(booking);
     }
 }

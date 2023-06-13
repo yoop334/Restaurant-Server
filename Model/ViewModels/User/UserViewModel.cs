@@ -1,4 +1,6 @@
-﻿namespace Model.ViewModels.User;
+﻿using Model.Enums;
+
+namespace Model.ViewModels.User;
 
 public class UserViewModel
 {
@@ -11,4 +13,6 @@ public class UserViewModel
     public string LastName { get; set; }
     
     public string Phone { get; set; }
+    
+    public UserRole Role { get; set; }
 }

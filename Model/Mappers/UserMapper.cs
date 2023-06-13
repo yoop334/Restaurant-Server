@@ -13,7 +13,8 @@ public static class UserMapper
             Username = user.Username,
             Phone = user.Phone,
             FirstName = user.FirstName,
-            LastName = user.LastName
+            LastName = user.LastName,
+            Role = user.Role
         };
 
         return userViewModel;
